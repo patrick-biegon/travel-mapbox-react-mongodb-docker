@@ -8,3 +8,6 @@ body {
     overflow: hidden;
 }
 
+.marker{
+  stroke: #f8c102;
+}
