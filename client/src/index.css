@@ -13,7 +13,8 @@ body {
 }
 
 .marker.yellow path{
-  fill: yellow;
+  fill: #FFD814;
+  stroke: black;
 }
 
 .marker.red path{
@@ -25,9 +26,26 @@ body {
   padding: 1rem;
 }
 
+.mapboxgl-popup{
+  border-radius: 50rem;
+}
+
+
+.mapboxgl-popup-close-button {
+  width:  2rem;
+  font: 400 25px Arial;
+}
+
+.mapboxgl-popup-content {
+  margin: 0;
+  display: block;
+  padding: 10px;
+  border-radius: 15px ;
+}
+
 .popup img{
   height: 200px;
-  width: auto;
+  width: 100%;
   text-align: center;
   margin: 0 auto;
   display: block;
