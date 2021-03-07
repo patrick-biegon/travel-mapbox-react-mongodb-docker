@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import ReactMapGL, { Marker, Popup } from 'react-map-gl';
+import ReactMapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
 import {listLogEntries} from './api';
-import LogEntryForm from './LogEntryForm';
+import LogEntryForm from './components/LogEntryForm';
 
 const App = () => {
   const [logEntries, setLogEntries] = useState([]);
@@ -38,11 +38,17 @@ const showAddMarkerPop = (event) =>{
   return (
     <ReactMapGL
       {...viewport}
+      
       mapStyle="mapbox://styles/asgaraliq/cklfm0y8e3zkx17o0la6s1hk6"
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       onViewportChange={nextViewport => setViewport(nextViewport)}
       onDblClick={showAddMarkerPop}
+      
     >
+      <div className="nav" >
+        <NavigationControl />
+      </div>
+
       {
         logEntries.map(entry =>(
         <React.Fragment key={entry._id}>
@@ -88,7 +94,7 @@ const showAddMarkerPop = (event) =>{
                 latitude={entry.latitude} 
                 longitude={entry.longitude} 
                 closeButton={true}
-                closeOnClick={false}
+                closeOnClick={true}
                 dynamicPosition={true}
                 onClose={() => setShowPopup({})}
                 anchor="top" >
@@ -145,7 +151,7 @@ const showAddMarkerPop = (event) =>{
                 latitude={addEntryLocation.latitude} 
                 longitude={addEntryLocation.longitude} 
                 closeButton={true}
-                closeOnClick={false}
+                closeOnClick={true}
                 dynamicPosition={true}
                 onClose={() => setAddEntryLocation(null)}
                 anchor="top" >
