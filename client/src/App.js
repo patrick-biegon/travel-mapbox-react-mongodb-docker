@@ -3,20 +3,37 @@ import { useState, useEffect } from 'react';
 import ReactMapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
 import {listLogEntries} from './api';
 import LogEntryForm from './components/LogEntryForm';
+import styled, {ThemeProvider} from 'styled-components';
+import {lightTheme, darkTheme, globalStyles} from './themes';
+import DarkModeToggle from "react-dark-mode-toggle";
+
+const styledApp = styled.div;
+
+const lightMap = "mapbox://styles/asgaraliq/cklzl2vj68db717qnf09zg2pu";
+
+const darkMap = "mapbox://styles/asgaraliq/cklfm0y8e3zkx17o0la6s1hk6";
 
 const App = () => {
   const [logEntries, setLogEntries] = useState([]);
   const [togglePopup] = React.useState(false);
   const [addEntryLocation, setAddEntryLocation] = useState(null); 
   const [showPopup, setShowPopup] = useState({});
+  const [isDarkMode, setIsDarkMode] = useState(lightMap);
   const [viewport, setViewport] = useState({
     width: '100vw',
     height: '100vh',
     latitude: 21.1458,
     longitude: 79.0882, 
-    zoom: 3
+    zoom: 3,
   });
 
+
+
+
+//const themeToggler = () => {
+ // console.log(theme);
+//  theme === lightMap ? setTheme(darkMap) : setTheme(lightMap);
+//};
 
 const getEntries = async() => {
   const logEntries = await listLogEntries();
@@ -36,10 +53,19 @@ const showAddMarkerPop = (event) =>{
 };
 
   return (
+      
+  //  <div className="theme">
+   //   <button onClick = {() => themeToggler()}>Change Theme</button>
+  //  </div>
+  
+
+  
+    
+
     <ReactMapGL
       {...viewport}
       
-      mapStyle="mapbox://styles/asgaraliq/cklfm0y8e3zkx17o0la6s1hk6"
+      mapStyle={darkMap}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       onViewportChange={nextViewport => setViewport(nextViewport)}
       onDblClick={showAddMarkerPop}
@@ -48,6 +74,16 @@ const showAddMarkerPop = (event) =>{
       <div className="nav" >
         <NavigationControl />
       </div>
+
+
+      <div className="themeToggle" >
+        <DarkModeToggle
+          onChange={setIsDarkMode}
+          checked={isDarkMode}
+          size={80}
+        />
+      </div>
+
 
       {
         logEntries.map(entry =>(
@@ -94,7 +130,7 @@ const showAddMarkerPop = (event) =>{
                 latitude={entry.latitude} 
                 longitude={entry.longitude} 
                 closeButton={true}
-                closeOnClick={true}
+                closeOnClick={false}
                 dynamicPosition={true}
                 onClose={() => setShowPopup({})}
                 anchor="top" >
@@ -151,7 +187,7 @@ const showAddMarkerPop = (event) =>{
                 latitude={addEntryLocation.latitude} 
                 longitude={addEntryLocation.longitude} 
                 closeButton={true}
-                closeOnClick={true}
+                closeOnClick={false}
                 dynamicPosition={true}
                 onClose={() => setAddEntryLocation(null)}
                 anchor="top" >
@@ -167,6 +203,7 @@ const showAddMarkerPop = (event) =>{
       }
       
     </ReactMapGL>
+    
   );
 }
 

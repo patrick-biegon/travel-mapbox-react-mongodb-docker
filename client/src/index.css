@@ -14,7 +14,6 @@ body {
 
 .marker.yellow path{
   fill: #FFD814;
-  stroke: black;
 }
 
 .marker.red path{
@@ -22,13 +21,10 @@ body {
 }
 
 .popup{
-  max-width: 40vw;
+  max-width: 100vw;
   padding: 1rem;
 }
 
-.mapboxgl-popup{
-  border-radius: 50rem;
-}
 
 
 .mapboxgl-popup-close-button {
@@ -55,14 +51,25 @@ body {
 .entry-form input,
 .entry-form textarea,
 .entry-form button{
-  margin: 0.5rem 0;
+  margin: 0.5rem 0.0;
   display: block;
   width: 100%; 
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; 
 }
 
 .nav{
   position: absolute;
   top: 0;
   left: 0;
-  padding: 10px;
+  padding-left: 2rem;
+  padding-top: 1rem;
+}
+
+.themeToggle{
+  top: 0;
+  left: 0;
+  padding-left: 5rem;
+  padding-top: 1rem;
 }
