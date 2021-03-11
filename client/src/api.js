@@ -6,7 +6,6 @@ export async function listLogEntries(){
     return response.json();
 }
 
-
 export async function createLogEntry(entry){
     const response = await fetch(`${API_URL}/api/logs`,{
         method: 'POST',

@@ -3,22 +3,41 @@ import { useState, useEffect } from 'react';
 import ReactMapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
 import {listLogEntries} from './api';
 import LogEntryForm from './components/LogEntryForm';
-import styled, {ThemeProvider} from 'styled-components';
-import {lightTheme, darkTheme, globalStyles} from './themes';
-import DarkModeToggle from "react-dark-mode-toggle";
+import { ThemeProvider } from '@material-ui/core';
+import useDarkMode from 'use-dark-mode';
+import DarkModeToggle from 'react-dark-mode-toggle';
 
-const styledApp = styled.div;
+const light = {
+  mapStyle: "mapbox://styles/asgaraliq/cklzl2vj68db717qnf09zg2pu",
+}
 
-const lightMap = "mapbox://styles/asgaraliq/cklzl2vj68db717qnf09zg2pu";
+const dark = {
+  mapStyle: "mapbox://styles/asgaraliq/cklfm0y8e3zkx17o0la6s1hk6",
+}
 
-const darkMap = "mapbox://styles/asgaraliq/cklfm0y8e3zkx17o0la6s1hk6";
+const getTheme = (mode) => {
+  //console.log(mode);
+  return {
+    colors: mode === light ? light : dark,
+  }
+}
+
+const log = (theme) => {
+  console.log(theme);
+}
 
 const App = () => {
   const [logEntries, setLogEntries] = useState([]);
   const [togglePopup] = React.useState(false);
   const [addEntryLocation, setAddEntryLocation] = useState(null); 
   const [showPopup, setShowPopup] = useState({});
-  const [isDarkMode, setIsDarkMode] = useState(lightMap);
+  const darkMode = useDarkMode(false);
+  const theme = getTheme(darkMode.value ? dark : light);
+  
+  const [settings, setSettings] = useState({
+    doubleClickZoom: false,
+  });
+
   const [viewport, setViewport] = useState({
     width: '100vw',
     height: '100vh',
@@ -27,13 +46,6 @@ const App = () => {
     zoom: 3,
   });
 
-
-
-
-//const themeToggler = () => {
- // console.log(theme);
-//  theme === lightMap ? setTheme(darkMap) : setTheme(lightMap);
-//};
 
 const getEntries = async() => {
   const logEntries = await listLogEntries();
@@ -54,36 +66,31 @@ const showAddMarkerPop = (event) =>{
 
   return (
       
-  //  <div className="theme">
-   //   <button onClick = {() => themeToggler()}>Change Theme</button>
-  //  </div>
-  
-
-  
-    
-
+      
     <ReactMapGL
       {...viewport}
+      {...settings}
       
-      mapStyle={darkMap}
+      mapStyle={theme.colors.mapStyle}
+    //  {...log(theme)}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       onViewportChange={nextViewport => setViewport(nextViewport)}
       onDblClick={showAddMarkerPop}
+      
       
     >
       <div className="nav" >
         <NavigationControl />
       </div>
 
-
-      <div className="themeToggle" >
-        <DarkModeToggle
-          onChange={setIsDarkMode}
-          checked={isDarkMode}
-          size={80}
+      <div className="themeToggle">
+        <DarkModeToggle 
+            onChange={darkMode.toggle}
+            checked={darkMode.value}
+            size={50}
         />
       </div>
-
+      
 
       {
         logEntries.map(entry =>(
@@ -192,10 +199,12 @@ const showAddMarkerPop = (event) =>{
                 onClose={() => setAddEntryLocation(null)}
                 anchor="top" >
                   <div className = "popup">
-                    <LogEntryForm onClose={() => {
+                    <LogEntryForm 
+                      onClose={() => {
                       setAddEntryLocation(null);
                       getEntries();
-                    }} location={addEntryLocation}/>
+                    }} 
+                      location={addEntryLocation}/>
                   </div>
               </Popup>
           </>
@@ -203,6 +212,9 @@ const showAddMarkerPop = (event) =>{
       }
       
     </ReactMapGL>
+    
+    
+
     
   );
 }

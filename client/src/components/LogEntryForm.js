@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useForm } from "react-hook-form";
-import {createLogEntry} from '../api';
+import { createLogEntry } from '../api';
 
 const LogEntryForm = ({location, onClose}) =>{
 
