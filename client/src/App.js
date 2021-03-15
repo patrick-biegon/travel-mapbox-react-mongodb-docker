@@ -15,6 +15,8 @@ const dark = {
   mapStyle: "mapbox://styles/asgaraliq/cklfm0y8e3zkx17o0la6s1hk6",
 }
 
+const API_URL = 'http://localhost:8083';
+
 const getTheme = (mode) => {
   //console.log(mode);
   return {
@@ -30,6 +32,7 @@ const App = () => {
   const [logEntries, setLogEntries] = useState([]);
   const [togglePopup] = React.useState(false);
   const [addEntryLocation, setAddEntryLocation] = useState(null); 
+  const [weatherDetail, setWeatherDetail] = useState("Fetching...");
   const [showPopup, setShowPopup] = useState({});
   const darkMode = useDarkMode(false);
   const theme = getTheme(darkMode.value ? dark : light);
@@ -55,6 +58,23 @@ const getEntries = async() => {
 useEffect(() => {
   getEntries();
 }, []);
+
+const updateWeatherDetails = (latitude, longitude) => {
+  fetch(`${API_URL}/api/logs/getlocation`, {
+    method: "POST",
+    body: JSON.stringify({
+      "lat": latitude,
+      "lon": longitude
+    }),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(res => res.json())
+  .then(data => {
+    setWeatherDetail(data.details)
+  })
+  .catch(() => setWeatherDetail("Error Fetching Weather Info"))
+}
 
 const showAddMarkerPop = (event) =>{
   const [longitude, latitude] = event.lngLat;
@@ -102,10 +122,13 @@ const showAddMarkerPop = (event) =>{
           //  offsetLeft={-12} 
           //  offsetTop={-24}
           >
-            <div onClick = {() => setShowPopup({
-              //...showPopup,
-              [entry._id]: true,
-            })}>
+            <div onClick = {() => {
+              updateWeatherDetails(entry.latitude, entry.longitude)
+              setShowPopup({
+                //...showPopup,
+                [entry._id]: true,
+              })
+            }}>
              <svg 
                   className="marker yellow" 
                   style={{
@@ -139,13 +162,19 @@ const showAddMarkerPop = (event) =>{
                 closeButton={true}
                 closeOnClick={false}
                 dynamicPosition={true}
-                onClose={() => setShowPopup({})}
+                onClose={() => {
+                  setShowPopup({})
+                  setWeatherDetail("Fetching...")
+                }}
+                on
                 anchor="top" >
                   <div className = "popup">
                     <h3>{entry.title}</h3>
                     <p>{entry.comments}</p>
                     <small>Visited on: {new Date(entry.visitDate).toLocaleDateString()}</small>
                     { entry.image && <img src={entry.image} alt={entry.title} /> }
+                    <hr/>
+                    {weatherDetail}
                   </div>
               </Popup>
             ) : null
