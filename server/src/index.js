@@ -6,7 +6,6 @@ const cors = require('cors');
 
 const mongoose = require('mongoose');
 
-
 const middlewares = require('./middlewares');
 const logs = require('./api/logs');
 

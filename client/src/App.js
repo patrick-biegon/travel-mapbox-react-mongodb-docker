@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react';
 import ReactMapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
 import {listLogEntries} from './api';
 import LogEntryForm from './components/LogEntryForm';
-import { ThemeProvider } from '@material-ui/core';
 import useDarkMode from 'use-dark-mode';
 import DarkModeToggle from 'react-dark-mode-toggle';
+
+const API_URL = 'http://localhost:8083';
 
 const light = {
   mapStyle: "mapbox://styles/asgaraliq/cklzl2vj68db717qnf09zg2pu",
@@ -14,8 +15,6 @@ const light = {
 const dark = {
   mapStyle: "mapbox://styles/asgaraliq/cklfm0y8e3zkx17o0la6s1hk6",
 }
-
-const API_URL = 'http://localhost:8083';
 
 const getTheme = (mode) => {
   //console.log(mode);
@@ -172,9 +171,14 @@ const showAddMarkerPop = (event) =>{
                     <h3>{entry.title}</h3>
                     <p>{entry.comments}</p>
                     <small>Visited on: {new Date(entry.visitDate).toLocaleDateString()}</small>
+                    <hr/>
                     { entry.image && <img src={entry.image} alt={entry.title} /> }
                     <hr/>
-                    {weatherDetail}
+                    <div className = "weather">
+                      {weatherDetail}
+                    </div>
+                    
+                    
                   </div>
               </Popup>
             ) : null

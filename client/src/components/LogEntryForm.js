@@ -43,6 +43,8 @@ const LogEntryForm = ({location, onClose}) =>{
             <label htmlFor="visitDate">Visit Date</label>
             <input name="visitDate" type="date" ref={register} required/>
             
+            <br></br>
+
             <button disabled={loading}>{ loading ? 'Loading...' : 'Create Entry'}</button>
             
         </form>
