@@ -1,3 +1,6 @@
+const jwt = require('jsonwebtoken');
+const User = require('./models/user');
+
 const notFound = (req, res, next) => {
     const error = new Error(`Not found - ${req.originalUrl}`);
     res.status(404);
@@ -13,8 +16,26 @@ const errorHandler = (error, req, res, next) => {
     });
 };
 
+const auth = async(req, res, next) => {
+    try{
+        const token = req.header('Authorization').replace('Bearer ', '');
+        const decode = jwt.verify(token, 'tempToken');
+        const user = await User.findOne({_id: decode._id, 'tokens.token': token});
+
+        if(!user){
+            throw new Error();
+        }
+        req.token = token;
+        req.user = user;
+        next();
+    }catch(e){
+        res.status(401).send({error: 'Authenticate!'});
+    }
+    
+}
 
 module.exports = {
     notFound,
     errorHandler,
+    auth,
 };
