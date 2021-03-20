@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 
 const middlewares = require('./middlewares');
 const logs = require('./api/logs');
+const user = require('./api/user');
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.get('/', (req,res) => {
 });
 
 app.use('/api/logs',logs);
+app.use('/api/user', user);
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
