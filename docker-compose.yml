@@ -33,6 +33,7 @@ services:
       context: ./client
       dockerfile: Dockerfile
     image: myapp-client
+    env_file: ./client/.env
     container_name: myapp-react-client
     command: npm start
     volumes:
