@@ -1,4 +1,4 @@
-const API_URL = 'http://host.docker.internal:8083';
+const API_URL = 'http://localhost:8083';
 
 export async function listLogEntries(){
     const response = await fetch(`${API_URL}/api/logs`);

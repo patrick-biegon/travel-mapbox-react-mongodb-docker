@@ -6,7 +6,7 @@ import LogEntryForm from './components/LogEntryForm';
 import useDarkMode from 'use-dark-mode';
 import DarkModeToggle from 'react-dark-mode-toggle';
 
-const API_URL = 'http://host.docker.internal:8083';
+const API_URL = 'http://localhost:8083';
 
 const light = {
   mapStyle: "mapbox://styles/asgaraliq/cklzl2vj68db717qnf09zg2pu",
