@@ -15,7 +15,7 @@ RUN npm install --silent
 # copy local files to app folder
 COPY . .
 
-EXPOSE 3000 443
+EXPOSE 3000
 
 SHELL ["npm","run","start"]
 
