@@ -15,6 +15,6 @@ RUN npm install --silent
 COPY . .
 
 # Exports
-EXPOSE 8083
+EXPOSE 8083 3000
 
 CMD ["npm","run","dev"]
