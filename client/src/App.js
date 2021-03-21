@@ -32,6 +32,9 @@ const log = (theme) => {
 }
 
 const App = () => {
+  if(!localStorage.getItem("token")){
+    // Action you want to perform if not logged in.
+  }
   const [logEntries, setLogEntries] = useState([]);
   const [togglePopup] = React.useState(false);
   const [addEntryLocation, setAddEntryLocation] = useState(null); 
