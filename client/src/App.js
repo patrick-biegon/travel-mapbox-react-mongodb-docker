@@ -6,7 +6,11 @@ import LogEntryForm from './components/LogEntryForm';
 import useDarkMode from 'use-dark-mode';
 import DarkModeToggle from 'react-dark-mode-toggle';
 
-const API_URL = 'http://localhost:8083';
+//const API_URL = 'http://localhost:8083';
+
+
+const API_URL = process.env.REACT_APP_API_URL;
+
 
 const light = {
   mapStyle: "mapbox://styles/asgaraliq/cklzl2vj68db717qnf09zg2pu",
