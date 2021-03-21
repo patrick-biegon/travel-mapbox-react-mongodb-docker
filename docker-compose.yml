@@ -54,4 +54,4 @@ volumes:
     data-volume:
     node_modules:
     web-root:
-    driver: local
+      driver: local
