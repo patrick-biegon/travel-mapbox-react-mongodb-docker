@@ -1,12 +1,17 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import ReactMapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
+import ReactMapGL, { Marker, Popup, NavigationControl, GeolocateControl, FlyToInterpolator } from 'react-map-gl';
 import {listLogEntries} from './api';
 import LogEntryForm from './components/LogEntryForm';
 import useDarkMode from 'use-dark-mode';
 import DarkModeToggle from 'react-dark-mode-toggle';
 
 const API_URL = process.env.REACT_APP_API_URL;
+
+const geolocateControlStyle= {
+  left: 32,
+  top: 130
+};
 
 const light = {
   mapStyle: "mapbox://styles/asgaraliq/cklzl2vj68db717qnf09zg2pu",
@@ -98,9 +103,16 @@ const showAddMarkerPop = (event) =>{
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       onViewportChange={nextViewport => setViewport(nextViewport)}
       onDblClick={showAddMarkerPop}
-      
-      
+      transitionInterpolator={new FlyToInterpolator()}
     >
+
+    <GeolocateControl
+        style={geolocateControlStyle}
+        positionOptions={{enableHighAccuracy: true}}
+        trackUserLocation={true}
+        auto
+    />
+
       <div className="nav" >
         <NavigationControl />
       </div>
