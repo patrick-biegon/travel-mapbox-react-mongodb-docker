@@ -189,6 +189,7 @@ const showAddMarkerPop = (event) =>{
                     <hr/>
                     { entry.image && <img src={entry.image} alt={entry.title} /> }
                     <hr/>
+                    <p>{ entry.tags }</p>
                     <div className = "weather">
                       {weatherDetail}
                     </div>
