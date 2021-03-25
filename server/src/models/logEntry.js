@@ -35,6 +35,12 @@ const logEntrySchema = new Schema({
         required: true,
         type: Date,
     },
+    tags: {
+        required: true,
+        type: String,
+        enum: ['hotel', 'monument', 'hospital', 'home', 'college', 'office', 'caffe', 'miscellaneous'],
+        default: 'home'
+    },
 
 },{
     timestamps: true,
