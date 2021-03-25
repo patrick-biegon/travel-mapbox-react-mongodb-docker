@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useForm } from "react-hook-form";
 import { createLogEntry } from '../api';
+import '../index.css'
 
 const LogEntryForm = ({location, onClose}) =>{
 
@@ -44,7 +45,7 @@ const LogEntryForm = ({location, onClose}) =>{
             <input name="visitDate" type="date" ref={register} required/>
 
             <label htmlFor="tags">Commute Type:</label>
-            <select name="tags" ref={register} >
+            <select className="commute" name="tags" ref={register} >
                 <option value="home">home</option>
                 <option value="office">office</option>
                 <option value="college">college</option>
