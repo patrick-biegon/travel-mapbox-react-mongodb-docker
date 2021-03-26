@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import login from "../api"
+import { login } from "../api"
 
 const Login = ()=> {
     const [email, updateEmail] = useState("");
@@ -13,10 +13,12 @@ const Login = ()=> {
         updatePassword(event.target.value)
     }
 
-    const handleSubmit = (event) => {
-        const status = login(email, password)
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const status = await login(email, password)
         if(status){
             // Code you want to run after login is successful.
+
         } else {
             // Run if login failed.
         }
