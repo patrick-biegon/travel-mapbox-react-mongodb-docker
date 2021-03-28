@@ -1,11 +1,8 @@
 import React, { useState } from "react"
 import { login } from "../api"
-<<<<<<< HEAD
 import { useStateValue } from '../StateProvider';
 const { Redirect } = require("react-router-dom");
 
-=======
->>>>>>> upstream/main
 
 const Login = ()=> {
     var redirect = false;
