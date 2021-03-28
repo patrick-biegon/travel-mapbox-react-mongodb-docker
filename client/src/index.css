@@ -40,7 +40,7 @@ body {
   border-radius: 0.9rem;
   color: black;
   background-color: white;
-  box-shadow: 2px 2px 1px #94897e;
+  box-shadow: 0 2px 4px rgba(53, 43, 43, 0.3);
   font-family: 'Droid Sans';
   border: 0.5px solid black;
 }
@@ -60,6 +60,33 @@ body {
   text-align: justify;
   margin: 0 auto;
   display: block;
+}
+
+.panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 320vw;
+  border-radius: 0.9rem;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(53, 43, 43, 0.3);
+  padding: 12px 24px;
+  margin: 20px;
+  font-size: 13px;
+  line-height: 2;
+  color: #000000;
+  text-transform: uppercase;
+  outline: none;
+  font-family: 'Droid Sans';
+  border: 0.5px solid black;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.btn:hover {
+  color: #08f;
 }
 
 .hr{
