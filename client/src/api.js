@@ -27,8 +27,11 @@ export async function login(email, password){
     })
     const data = await response.json();
     if(data.token){
-        localStorage.setItem("token", data.token)
+        localStorage.setItem("token", data.token);
         return true;
     }
-    return false;
+    else{
+        return false;
+    }
+    
 }
