@@ -7,7 +7,7 @@ import Login from '../src/components/loginForm';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Login />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

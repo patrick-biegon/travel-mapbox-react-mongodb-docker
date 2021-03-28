@@ -17,5 +17,5 @@ COPY . .
 
 EXPOSE 3000
 
-SHELL ["npm","run","start"]
+SHELL ["npm","run","build"]
 

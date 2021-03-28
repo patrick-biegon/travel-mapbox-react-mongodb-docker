@@ -53,7 +53,7 @@ const LogEntryForm = ({location, onClose}) =>{
                 <option value="caffe">caffe</option>
                 <option value="hotel">hotel</option>
                 <option value="monument">monument</option>
-                <option value="miscellaneousk ">miscellaneous</option>
+                <option value="miscellaneous ">miscellaneous</option>
             </select>
             
             <br></br>
