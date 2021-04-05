@@ -28,16 +28,15 @@ const Login = ()=> {
         event.preventDefault();
         updateState({
             loading: true,
-        });
+          });
         const status = await login(email, password)
         if(status){
-
             // Code you want to run after login is successful.
             console.log(status);
             updateState({
                 loading: false,
-                redirect: "../App",
-            });
+                redirect: "/App",
+              });
             
 
         } else {
@@ -46,13 +45,14 @@ const Login = ()=> {
             updateState({
                 errors: "Invalid Data",
                 loading: false,
-            });
+              });
         }
     }
+    if (state.redirect) {
+        return <Redirect to={state.redirect} />;
+      }
 
-    return 
-        {(redirect !=  "") ?  
-        <Redirect to="/home" /> : 
+    return (
         <div>
             <form onSubmit={handleSubmit}>
                 <input type="email" value={email} onChange={handleUpdateEmail}></input>
@@ -60,8 +60,7 @@ const Login = ()=> {
                 <input type="submit"></input>
             </form>
         </div>
-    }
-    ;
+    )
 }
 
 export default Login
