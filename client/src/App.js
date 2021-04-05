@@ -105,13 +105,6 @@ const App = () => {
 
   return (
 
-      // <Router>
-      //   <Switch>
-      //   <Route path="/home" exact component={Home} />
-      //   <Route path="/home" exact component={Home} />
-      //   </Switch>
-      // </Router>
-
     <ReactMapGL
       {...viewport}
       {...settings}
