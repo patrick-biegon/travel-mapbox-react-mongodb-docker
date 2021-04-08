@@ -118,14 +118,16 @@ const App = () => {
 
     >
 
-      <GeolocateControl
-        style={geolocateControlStyle}
-        positionOptions={{ enableHighAccuracy: true }}
-        trackUserLocation={true}
-        auto
-      />
-      
-      <Panel 
+      <div className="geo" >
+        <GeolocateControl
+          style={geolocateControlStyle}
+          positionOptions={{ enableHighAccuracy: true }}
+          trackUserLocation={true}
+          auto
+        />
+      </div>
+
+      <Panel
         onSelectEntries={onSelectEntries}
       />
 
@@ -137,6 +139,7 @@ const App = () => {
         <DarkModeToggle
           onChange={darkMode.toggle}
           checked={darkMode.value}
+          className={"themeButton"}
           size={50}
         />
       </div>
