@@ -6,12 +6,14 @@ import LogEntryForm from './components/LogEntryForm';
 import useDarkMode from 'use-dark-mode';
 import Panel from './components/Panel';
 import DarkModeToggle from 'react-dark-mode-toggle';
+import Navbar from './components/Navbar';
+const { Redirect } = require("react-router-dom");
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 const geolocateControlStyle = {
-  left: 32,
-  top: 130
+  right: 243,
+  top: 200
 };
 
 const light = {
@@ -34,9 +36,7 @@ const log = (theme) => {
 }
 
 const App = () => {
-  if (!localStorage.getItem("token")) {
-    // Action you want to perform if not logged in.
-  }
+
   const [logEntries, setLogEntries] = useState([]);
   const [togglePopup] = React.useState(false);
   const [addEntryLocation, setAddEntryLocation] = useState(null);
@@ -78,6 +78,13 @@ const App = () => {
     getEntries();
   }, []);
 
+  if (!localStorage.getItem("token")) {
+    // Action you want to perform if not logged in.
+    return <Redirect to="/" />;
+  }
+
+
+
   const updateWeatherDetails = (latitude, longitude) => {
     fetch(`${API_URL}/api/logs/getlocation`, {
       method: "POST",
@@ -114,37 +121,9 @@ const App = () => {
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       onViewportChange={nextViewport => setViewport(nextViewport)}
       onDblClick={showAddMarkerPop}
-      dragRotate={false}
+      dragRotate={true}
 
     >
-
-      <div className="geo" >
-        <GeolocateControl
-          style={geolocateControlStyle}
-          positionOptions={{ enableHighAccuracy: true }}
-          trackUserLocation={true}
-          auto
-        />
-      </div>
-
-      <Panel
-        onSelectEntries={onSelectEntries}
-      />
-
-      <div className="nav" >
-        <NavigationControl />
-      </div>
-
-      <div className="themeToggle">
-        <DarkModeToggle
-          onChange={darkMode.toggle}
-          checked={darkMode.value}
-          className={"themeButton"}
-          size={50}
-        />
-      </div>
-
-
       {
         logEntries.map(entry => (
           <React.Fragment key={entry._id}>
@@ -278,6 +257,41 @@ const App = () => {
           </>
         ) : null
       }
+      
+      <Navbar />
+
+      <div className="geo" >
+        <GeolocateControl
+          style={geolocateControlStyle}
+          positionOptions={{ enableHighAccuracy: true }}
+          trackUserLocation={true}
+          auto
+        />
+      </div>
+
+      <Panel
+        onSelectEntries={onSelectEntries}
+      />
+
+      <div className="themeToggle">
+        <DarkModeToggle
+          onChange={darkMode.toggle}
+          checked={darkMode.value}
+          className={"themeButton"}
+          size={50}
+        />
+      </div>
+
+
+      <div className="nav" >
+        <NavigationControl />
+      </div>
+
+
+
+
+
+
 
     </ReactMapGL>
 

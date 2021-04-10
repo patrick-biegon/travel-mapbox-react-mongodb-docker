@@ -36,7 +36,7 @@ const Login = ()=> {
             updateState({
                 loading: false,
                 redirect: "/App",
-              });
+            });
             
 
         } else {
