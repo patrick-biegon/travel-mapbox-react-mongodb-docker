@@ -15,11 +15,9 @@ const { Redirect } = require("react-router-dom");
 }*/
 
 function Logout() {
+    localStorage.removeItem('token')
     return (
-        <div>
-            localStorage.clear();
-            return <Redirect to="/" />;
-        </div>
+        <Redirect to="/" />
     )
 }
 
