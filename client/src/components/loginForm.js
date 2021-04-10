@@ -3,7 +3,24 @@ import { login } from "../api"
 import { useStateValue } from '../StateProvider';
 const { Redirect } = require("react-router-dom");
 
-
+const inputStyle = {
+    width: "100%",
+    padding: "12px 20px",
+    margin: "8px 0",
+    display: "inline-block",
+    border: "1px solid #ccc",
+    boxSizing: "border-box",
+  }
+  
+const buttonStyle = {
+    backgroundColor: "#4CAF50",
+    color: "white",
+    padding: "14px 20px",
+    margin: "8px 0",
+    border: "none",
+    cursor: "pointer",
+    width: "100%",
+  }
 const Login = ()=> {
     var redirect = false;
     const [email, updateEmail] = useState("");
@@ -52,13 +69,19 @@ const Login = ()=> {
         return <Redirect to={state.redirect} />;
       }
 
+      if (localStorage.getItem("token")) {
+        return <Redirect to="/App" />;
+      }
+
     return (
-        <div>
+        <div style ={{padding:'30%', paddingTop:'10%'}} >
+            <div style ={{paddingLeft:'45%', paddingBottom:'5%'}}><h2>Login</h2></div>
             <form onSubmit={handleSubmit}>
-                <input type="email" value={email} onChange={handleUpdateEmail}></input>
-                <input type="password" value={password} onChange={handleUpdatePassword}></input>
-                <input type="submit"></input>
+                <input style={inputStyle} type="email" value={email} onChange={handleUpdateEmail}></input>
+                <input style={inputStyle} type="password" value={password} onChange={handleUpdatePassword}></input>
+                <input style={buttonStyle} type="submit"></input>
             </form>
+            <input style={buttonStyle} type="submit"></input>
         </div>
     )
 }
