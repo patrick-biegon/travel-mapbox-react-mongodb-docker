@@ -15,12 +15,23 @@ const inputStyle = {
 const buttonStyle = {
     backgroundColor: "#4CAF50",
     color: "white",
-    padding: "14px 20px",
+    padding: "14px 20px 10px 10px",
     margin: "8px 0",
     border: "none",
     cursor: "pointer",
     width: "100%",
   }
+
+const RegisterStyle = {
+    backgroundColor: "#808080",
+    color: "white",
+    padding: "14px 20px 10px 10px",
+    margin: "8px 0",
+    border: "none",
+    cursor: "pointer",
+    width: "100%",
+  }
+
 const Login = ()=> {
     var redirect = false;
     const [email, updateEmail] = useState("");
@@ -39,6 +50,13 @@ const Login = ()=> {
 
     const handleUpdatePassword = (event) => {
         updatePassword(event.target.value)
+    }
+
+    const handleRegister = async (event) => {
+      updateState({
+        loading: false,
+        redirect: "/Register",
+    });
     }
 
     const handleSubmit = async (event) => {
@@ -76,14 +94,14 @@ const Login = ()=> {
     return (
         <div style ={{padding:'30%', paddingTop:'10%'}} >
             <div style ={{paddingLeft:'45%', paddingBottom:'5%'}}><h2>Login</h2></div>
-            <form onSubmit={handleSubmit}>
-                <input style={inputStyle} type="email" value={email} onChange={handleUpdateEmail}></input>
-                <input style={inputStyle} type="password" value={password} onChange={handleUpdatePassword}></input>
-                <input style={buttonStyle} type="submit"></input>
-            </form>
-            <input style={buttonStyle} type="submit"></input>
+                <input style={inputStyle} type="email" placeholder="Email" value={email} onChange={handleUpdateEmail}></input>
+                <input style={inputStyle} type="password" placeholder="Password" value={password} onChange={handleUpdatePassword}></input>
+                <div style={{display:'flex'}}>
+                <input style={buttonStyle} type="submit" onClick={handleSubmit}></input>
+                <button style={RegisterStyle}  onClick={ handleRegister}>Register</button>
+                </div>
         </div>
-    )
+    ) 
 }
 
 export default Login
