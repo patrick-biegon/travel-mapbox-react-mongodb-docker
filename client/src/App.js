@@ -65,6 +65,8 @@ const App = () => {
     setViewport({
       longitude,
       latitude,
+      isDragging: false,
+      isPanning: false,
       zoom: 11,
       transitionInterpolator: new FlyToInterpolator({ speed: 1.2 }),
       transitionDuration: 'auto'
@@ -75,7 +77,7 @@ const App = () => {
 
   const getEntries = async () => {
     const logEntries = await listLogEntries();
-  //  console.log(logEntries);
+    //  console.log(logEntries);
     setLogEntries(logEntries);
   };
 
@@ -129,6 +131,7 @@ const App = () => {
       onViewportChange={nextViewport => setViewport(nextViewport)}
       onDblClick={showAddMarkerPop}
       dragRotate={true}
+
 
     >
       {
@@ -286,45 +289,45 @@ const App = () => {
           <h3>Log Entries</h3>
 
           <hr />
-          
 
-            <div key={`btn-${logEntries._id}`} className="dropdown">
-              <select 
-                onChange={(e) => {
-                  const selectedTag = e.target.value;
-                  setSelectedTags(selectedTag);
-                }}
-                id={`entry-${logEntries._id}`}
-              >
-                <option value="Home">Home</option>
-                <option value="Work">Work</option>
-                <option value="College">College</option>
-                <option value="Hospital">Hospital</option>
-                <option value="Food">Food</option>
-                <option value="Monument">Monument</option>
-                <option value="Miscellaneous">Miscellaneous</option>
-              </select>
 
-            </div>
-          
+          <div key={`btn-${logEntries._id}`} className="dropdown">
+            <select
+              onChange={(e) => {
+                const selectedTag = e.target.value;
+                setSelectedTags(selectedTag);
+              }}
+              id={`entry-${logEntries._id}`}
+            >
+              <option value="Home">Home</option>
+              <option value="Work">Work</option>
+              <option value="College">College</option>
+              <option value="Hospital">Hospital</option>
+              <option value="Food">Food</option>
+              <option value="Monument">Monument</option>
+              <option value="Miscellaneous">Miscellaneous</option>
+            </select>
+
+          </div>
+
           {
-          // const filterdEntry = logEntries.filter(logEntries => logEntries.tags == {selectedTag});
-          // console.log(filterdEntry);
-          logEntries.filter(item => item.tags === selectedTags).map(filterdEntry => (
-     //      console.log(selectedTags),
-            <React.Fragment key={filterdEntry._id}>
-              <div key={`btn-${filterdEntry._id}`} className="input">
-                <input
-                  type="button"
-                  name="entries"
-                  className="inputButton"
-                  id={`entry-${filterdEntry._id}`}
-                  onClick={() => onSelectEntries(filterdEntry)}
-                  value={filterdEntry.title}
-                />
-              </div>
-            </React.Fragment>
-          ))
+            // const filterdEntry = logEntries.filter(logEntries => logEntries.tags == {selectedTag});
+            // console.log(filterdEntry);
+            logEntries.filter(item => item.tags === selectedTags).map(filterdEntry => (
+              //      console.log(selectedTags),
+              <React.Fragment key={filterdEntry._id}>
+                <div key={`btn-${filterdEntry._id}`} className="input">
+                  <input
+                    type="button"
+                    name="entries"
+                    className="inputButton"
+                    id={`entry-${filterdEntry._id}`}
+                    onClick={() => onSelectEntries(filterdEntry)}
+                    value={filterdEntry.title}
+                  />
+                </div>
+              </React.Fragment>
+            ))
           }
         </div>
 

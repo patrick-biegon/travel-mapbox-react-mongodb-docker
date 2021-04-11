@@ -70,8 +70,14 @@
 }
 
 .nav-menu-items {
+    
     width: 100vw;
     border-radius: 4px;
+}
+  
+.nav-menu-items svg {
+    
+    margin-left: 1rem;
 }
   
 .navbar-toggle {

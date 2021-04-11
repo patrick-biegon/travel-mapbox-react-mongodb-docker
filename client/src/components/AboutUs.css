@@ -1,7 +1,42 @@
 .navbar {
-    background-color: black;
+    background-color: transparent;
     height: 60px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+
+body{
+    background-color:rgb(60, 57, 57);
+}
+.Title{
+    margin: 2rem;
+}
+
+.First{
+    margin: 2rem;
+    background: white;
+    box-shadow: 0 0 1.5px 1.5px rgba(53, 43, 43, 0.3);
+    padding: 6px 14px;
+    font-size: 20px;
+    line-height: 2;
+    color: black;
+    outline: black;
+    align-items: center;
+    border-radius: 1rem;
+}
+
+
+.Second{
+    margin: 2rem;
+    margin: 2rem;
+    background: white;
+    box-shadow: 0 0 1.5px 1.5px rgba(53, 43, 43, 0.3);
+    padding: 6px 14px;
+    font-size: 20px;
+    line-height: 2;
+    color: black;
+    outline: black;
+    align-items: center;
+    border-radius: 1rem;
 }
