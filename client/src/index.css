@@ -6,7 +6,9 @@ body {
     overflow: hidden;
 }
 
+
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
 
 
 .marker {
@@ -43,9 +45,8 @@ body {
     border-radius: 0.9rem;
     color: black;
     background-color: white;
-    box-shadow: 0 2px 4px rgba(53, 43, 43, 0.3);
+    box-shadow: 0 0 2px 2px rgba(53, 43, 43, 0.3);
     font-family: 'Droid Sans';
-    border: 0.5px solid black;
 }
 
 .popup img {
@@ -54,9 +55,27 @@ body {
     text-align: center;
     margin: 0 auto;
     display: block;
-    border: 0.5px solid black;
+    border: 0.1px solid black;
     border-radius: 0.9rem;
 }
+
+.mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+    box-shadow: 0 0 2px  rgba(53, 43, 43, 0.3);
+    border-bottom-color: white;
+    }
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+    border-top-color: white;
+    }
+.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+    border-right-color: white;
+    }
+.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+    border-left-color: white;
+    }
 
 .weather {
     width: 15rem;
@@ -67,22 +86,41 @@ body {
 
 .panel {
     position: absolute;
-    padding-top: 5rem;
+    top: 0;
     right: 0;
-    max-width: 20vw;
-    border-radius: 0.9rem;
-    background: #fff;
-    box-shadow: 0 2px 4px rgba(53, 43, 43, 0.3);
-    padding: 12px 24px;
+    width: auto;
+    max-width: 50vw;
+    border-radius: 0.6rem;
+    background: darkgoldenrod;
+    box-shadow: 0 0 1.5px 1.5px rgba(53, 43, 43, 0.3);
+    padding: 6px 14px;
     margin: 20px;
     font-size: 13px;
     line-height: 2;
-    color: #000000;
-    text-transform: uppercase;
-    outline: none;
-    font-family: 'Droid Sans';
-    border: 0.5px solid black;
+    color: white;
+    outline: white;
+    align-items: center;
 }
+
+.dropdown{
+    width: auto;
+    padding:  0 4px 0 4px;
+    border-radius: 6px;
+}
+
+.input{
+    color: black;
+    outline: black;
+    margin: 4px;
+    align-items: center;
+}
+
+.inputButton{
+    width: auto;
+    padding:  0 4px 0 4px;
+    border-radius: 6px;
+}
+
 
 .btn {
     cursor: pointer;
@@ -112,16 +150,17 @@ body {
 
 .nav {
     position:absolute;
-    right: 0;
-    padding-right: 17rem;
-    padding-top: 1.4rem;
+    left: 0;
+    padding-left: 1.4rem;
+    padding-top: 4.5rem;
 }
 
 .themeToggle {
     position: absolute;
-    right: 0;
-    padding-right: 18rem;
-    padding-top: 1.4rem;
+    bottom: 0;
+    left: 0;
+    padding-left: 1.2rem;
+    padding-top: 4rem;
 }
 
 .commute {

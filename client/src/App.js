@@ -7,17 +7,18 @@ import useDarkMode from 'use-dark-mode';
 import Panel from './components/Panel';
 import DarkModeToggle from 'react-dark-mode-toggle';
 import Navbar from './components/Navbar';
+
 const { Redirect } = require("react-router-dom");
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 const geolocateControlStyle = {
-  right: 243,
-  top: 200
+  left: 22,
+  top: 180
 };
 
 const light = {
-  mapStyle: "mapbox://styles/asgaraliq/cklzl2vj68db717qnf09zg2pu",
+  mapStyle: "mapbox://styles/asgaraliq/ckncbvvw610bw17nrs1mbcnwg",
 }
 
 const dark = {
@@ -37,13 +38,16 @@ const log = (theme) => {
 
 const App = () => {
 
+
   const [logEntries, setLogEntries] = useState([]);
   const [togglePopup] = React.useState(false);
   const [addEntryLocation, setAddEntryLocation] = useState(null);
   const [weatherDetail, setWeatherDetail] = useState("Fetching...");
   const [showPopup, setShowPopup] = useState({});
+  const [selectedTags, setSelectedTags] = useState("Home");
   const darkMode = useDarkMode(false);
   const theme = getTheme(darkMode.value ? dark : light);
+
 
   const [settings, setSettings] = useState({
     doubleClickZoom: false,
@@ -71,12 +75,15 @@ const App = () => {
 
   const getEntries = async () => {
     const logEntries = await listLogEntries();
+  //  console.log(logEntries);
     setLogEntries(logEntries);
   };
 
   useEffect(() => {
     getEntries();
   }, []);
+
+
 
   if (!localStorage.getItem("token")) {
     // Action you want to perform if not logged in.
@@ -184,9 +191,9 @@ const App = () => {
                     <h3>{entry.title}</h3>
                     <p>{entry.comments}</p>
                     <small>Visited on: {new Date(entry.visitDate).toLocaleDateString()}</small>
-                    <hr />
+
                     {entry.image && <img src={entry.image} alt={entry.title} />}
-                    <hr />
+
                     <p>{entry.tags}</p>
                     <div className="weather">
                       {weatherDetail}
@@ -257,8 +264,13 @@ const App = () => {
           </>
         ) : null
       }
-      
-      <Navbar />
+
+
+
+      <div className="nav" >
+        <NavigationControl />
+      </div>
+
 
       <div className="geo" >
         <GeolocateControl
@@ -269,9 +281,57 @@ const App = () => {
         />
       </div>
 
-      <Panel
-        onSelectEntries={onSelectEntries}
-      />
+      {
+        <div className="panel">
+          <h3>Log Entries</h3>
+
+          <hr />
+          
+
+            <div key={`btn-${logEntries._id}`} className="dropdown">
+              <select 
+                onChange={(e) => {
+                  const selectedTag = e.target.value;
+                  setSelectedTags(selectedTag);
+                }}
+                id={`entry-${logEntries._id}`}
+              >
+                <option value="Home">Home</option>
+                <option value="Work">Work</option>
+                <option value="College">College</option>
+                <option value="Hospital">Hospital</option>
+                <option value="Food">Food</option>
+                <option value="Monument">Monument</option>
+                <option value="Miscellaneous">Miscellaneous</option>
+              </select>
+
+            </div>
+          
+          {
+          // const filterdEntry = logEntries.filter(logEntries => logEntries.tags == {selectedTag});
+          // console.log(filterdEntry);
+          logEntries.filter(item => item.tags === selectedTags).map(filterdEntry => (
+     //      console.log(selectedTags),
+            <React.Fragment key={filterdEntry._id}>
+              <div key={`btn-${filterdEntry._id}`} className="input">
+                <input
+                  type="button"
+                  name="entries"
+                  className="inputButton"
+                  id={`entry-${filterdEntry._id}`}
+                  onClick={() => onSelectEntries(filterdEntry)}
+                  value={filterdEntry.title}
+                />
+              </div>
+            </React.Fragment>
+          ))
+          }
+        </div>
+
+      }
+      {/* <Panel */}
+      {/* onSelectEntries={onSelectEntries} */}
+      {/* /> */}
 
       <div className="themeToggle">
         <DarkModeToggle
@@ -279,21 +339,17 @@ const App = () => {
           checked={darkMode.value}
           className={"themeButton"}
           size={50}
+          speed={2.5}
         />
       </div>
 
-
-      <div className="nav" >
-        <NavigationControl />
+      <div className="NavbarApp">
+        <Navbar />
       </div>
 
 
-
-
-
-
-
     </ReactMapGL>
+
 
 
 

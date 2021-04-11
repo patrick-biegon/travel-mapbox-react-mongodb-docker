@@ -38,8 +38,8 @@ const logEntrySchema = new Schema({
     tags: {
         required: true,
         type: String,
-        enum: ['hotel', 'monument', 'hospital', 'home', 'college', 'office', 'caffe', 'miscellaneous'],
-        default: 'home'
+        enum: ['Food', 'Monument', 'Hospital', 'Home', 'College', 'Work', 'Miscellaneous'],
+        default: 'Home'
     },
 
 },{
