@@ -81,7 +81,7 @@ const Register = ()=> {
 
     return (
         <div style ={{padding:'30%', paddingTop:'10%'}} >
-            <div style ={{paddingLeft:'45%', paddingBottom:'5%'}}><h2>Register</h2></div>
+            <div><h2><center>Register</center></h2></div>
             <input style={inputStyle} type="name" placeholder="Enter your Name" value={name} onChange={handleUpdateName}></input>
                 <input style={inputStyle} type="email" placeholder="Enter your Email" value={email} onChange={handleUpdateEmail}></input>
                 <input style={inputStyle} type="password" placeholder="Enter password" value={password} onChange={handleUpdatePassword}></input>
