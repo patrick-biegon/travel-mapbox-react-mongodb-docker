@@ -1,15 +1,22 @@
 const API_URL = process.env.REACT_APP_API_URL;
 
 export async function listLogEntries(){
-    const response = await fetch(`${API_URL}/api/logs`);
+    const token = localStorage.getItem("token")
+    const response = await fetch(`${API_URL}/api/logs`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
     return response.json();
 }
 
 export async function createLogEntry(entry){
+    const token = localStorage.getItem("token")
     const response = await fetch(`${API_URL}/api/logs`,{
         method: 'POST',
         headers:{
             'content-type': 'application/json',
+            Authorization: `Bearer ${token}`
         },
         body: JSON.stringify(entry),
         

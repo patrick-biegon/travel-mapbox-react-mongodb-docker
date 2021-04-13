@@ -8,6 +8,10 @@ const requiredNumber = {
 
 
 const logEntrySchema = new Schema({
+    userid: {
+        type: String,
+        required: true,
+    },
     title:  {
         type: String,
         required: true,

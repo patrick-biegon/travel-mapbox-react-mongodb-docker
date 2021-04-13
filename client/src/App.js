@@ -95,6 +95,7 @@ const App = () => {
 
 
   const updateWeatherDetails = (latitude, longitude) => {
+    const token = localStorage.getItem('token');
     fetch(`${API_URL}/api/logs/getlocation`, {
       method: "POST",
       body: JSON.stringify({
@@ -102,7 +103,8 @@ const App = () => {
         "lon": longitude
       }),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
       }
     }).then(res => res.json())
       .then(data => {

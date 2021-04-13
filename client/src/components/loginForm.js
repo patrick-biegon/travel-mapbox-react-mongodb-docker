@@ -93,7 +93,7 @@ const Login = ()=> {
 
     return (
         <div style ={{padding:'30%', paddingTop:'10%'}} >
-            <div style ={{paddingLeft:'45%', paddingBottom:'5%'}}><h2>Login</h2></div>
+            <div ><h2><center>Login</center></h2></div>
                 <input style={inputStyle} type="email" placeholder="Email" value={email} onChange={handleUpdateEmail}></input>
                 <input style={inputStyle} type="password" placeholder="Password" value={password} onChange={handleUpdatePassword}></input>
                 <div style={{display:'flex'}}>
