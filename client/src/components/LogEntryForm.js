@@ -3,6 +3,16 @@ import { useForm } from "react-hook-form";
 import { createLogEntry } from '../api';
 import '../index.css'
 
+const buttonStyle = {
+    backgroundColor: "#4CAF50",
+    color: "white",
+    padding: "14px 20px 10px 10px",
+    margin: "8px 0",
+    border: "none",
+    cursor: "pointer",
+    width: "100%",
+  }
+
 const LogEntryForm = ({ location, onClose }) => {
 
     const [loading, setLoading] = useState(false);
@@ -45,7 +55,7 @@ const LogEntryForm = ({ location, onClose }) => {
             <input name="visitDate" type="date" ref={register} required />
 
             <label htmlFor="tags">Commute Type:</label>
-            <select className="commute" name="tags" ref={register} >
+            <select style={{backgroundColor: "#4CAF50"}} className="commute" name="tags" ref={register} >
                 <option value="Home">Home</option>
                 <option value="Work">Work</option>
                 <option value="College">College</option>
@@ -57,7 +67,7 @@ const LogEntryForm = ({ location, onClose }) => {
 
             <br></br>
 
-            <button disabled={loading}>{loading ? 'Loading...' : 'Create Entry'}</button>
+            <button style={buttonStyle} disabled={loading}>{loading ? 'Loading...' : 'Create Entry'}</button>
 
         </form>
     );
