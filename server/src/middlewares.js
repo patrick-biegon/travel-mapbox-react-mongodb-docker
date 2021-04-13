@@ -20,10 +20,11 @@ const auth = async(req, res, next) => {
     try{
         const token = req.header('Authorization').replace('Bearer ', '');
         const decode = jwt.verify(token, 'tempToken');
-        const user = await User.findOne({_id: decode._id, 'tokens.token': token});
+        const user = await User.findOne({_id: decode._id});
 
         if(!user){
-            throw new Error();
+            res.status(401).send({error: 'Authenticate!'});
+            return
         }
         req.token = token;
         req.user = user;
