@@ -27,12 +27,6 @@ const userSchema = new mongoose.Schema({
             required: true,
             minlength: 8
         },
-        tokens: [{
-            token:{
-                type: String,
-                required: true
-            }
-        }]
 }, {
     timestamps: true
 });
@@ -62,9 +56,6 @@ userSchema.methods.toJSON = function() {
 userSchema.methods.getAuthToken = async function () {
     const user = this;
     const token = jwt.sign({_id: user._id.toString()}, 'tempToken');
-
-    user.tokens = user.tokens.concat({token});
-    await user.save();
     return token;
 }
 
