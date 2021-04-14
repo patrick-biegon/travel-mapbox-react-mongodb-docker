@@ -311,6 +311,7 @@ const App = () => {
             </select>
 
           </div>
+          <div className="panelItem">
 
           {
             // const filterdEntry = logEntries.filter(logEntries => logEntries.tags == {selectedTag});
@@ -331,6 +332,7 @@ const App = () => {
               </React.Fragment>
             ))
           }
+          </div>
         </div>
 
       }
