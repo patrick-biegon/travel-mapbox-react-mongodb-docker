@@ -36,8 +36,13 @@ const log = (theme) => {
   console.log(theme);
 }
 
-const App = () => {
+const themeTime = () => {
+  let s = new Date().toLocaleString();
+  console.log(s);
+  return s < "18:00:00" ? true : false;
+}
 
+const App = () => {
 
   const [logEntries, setLogEntries] = useState([]);
   const [togglePopup] = React.useState(false);
@@ -129,6 +134,7 @@ const App = () => {
 
       mapStyle={theme.colors.mapStyle}
       //  {...log(theme)}
+      //{...log(themeTime())}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       onViewportChange={nextViewport => setViewport(nextViewport)}
       onDblClick={showAddMarkerPop}
@@ -288,13 +294,11 @@ const App = () => {
 
       {
         <div className="panel">
-          <h3>Log Entries</h3>
+          <h4><center>Log Entries</center></h4>
 
-          <hr />
-
-
-          <div key={`btn-${logEntries._id}`} className="dropdown">
+          <div key={`btn-${logEntries._id}`} >
             <select
+              className="dropdown"
               onChange={(e) => {
                 const selectedTag = e.target.value;
                 setSelectedTags(selectedTag);
@@ -313,25 +317,25 @@ const App = () => {
           </div>
           <div className="panelItem">
 
-          {
-            // const filterdEntry = logEntries.filter(logEntries => logEntries.tags == {selectedTag});
-            // console.log(filterdEntry);
-            logEntries.filter(item => item.tags === selectedTags).map(filterdEntry => (
-              //      console.log(selectedTags),
-              <React.Fragment key={filterdEntry._id}>
-                <div key={`btn-${filterdEntry._id}`} className="input">
-                  <input
-                    type="button"
-                    name="entries"
-                    className="inputButton"
-                    id={`entry-${filterdEntry._id}`}
-                    onClick={() => onSelectEntries(filterdEntry)}
-                    value={filterdEntry.title}
-                  />
-                </div>
-              </React.Fragment>
-            ))
-          }
+            {
+              // const filterdEntry = logEntries.filter(logEntries => logEntries.tags == {selectedTag});
+              // console.log(filterdEntry);
+              logEntries.filter(item => item.tags === selectedTags).map(filterdEntry => (
+                //      console.log(selectedTags),
+                <React.Fragment key={filterdEntry._id}>
+                  <div key={`btn-${filterdEntry._id}`} className="input">
+                    <input
+                      type="button"
+                      name="entries"
+                      className="inputButton"
+                      id={`entry-${filterdEntry._id}`}
+                      onClick={() => onSelectEntries(filterdEntry)}
+                      value={filterdEntry.title}
+                    />
+                  </div>
+                </React.Fragment>
+              ))
+            }
           </div>
         </div>
 
