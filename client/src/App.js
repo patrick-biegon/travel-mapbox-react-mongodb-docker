@@ -204,12 +204,21 @@ const App = () => {
                   anchor="top" >
                   <div className="popup">
                     <h3>{entry.title}</h3>
-                    <p>{entry.comments}</p>
-                    <small>Visited on: {new Date(entry.visitDate).toLocaleDateString()}</small>
+                    <p>{entry.tags}</p>
+                    
+                    <small>{new Date(entry.visitDate).toLocaleDateString()}</small>
+                    <br/>
+                    <br/>
 
                     {entry.image && <img src={entry.image} alt={entry.title} />}
 
-                    <p>{entry.tags}</p>
+                    <br/>
+                    
+                    <p>{entry.description}</p>
+                    <p>{entry.comments}</p>
+
+                    <br/>
+                    
                     <div className="weather">
                       {weatherDetail}
                       <br>
