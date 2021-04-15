@@ -13,7 +13,9 @@ module.exports = async (lat, lon, res, next) => {
         }else{
             console.log(res.json);
             res.json({
-                "details": response.body.daily.data[0].icon +' 🌡️ =  '+response.body.currently.temperature+' degree fahrenheit.'+ ' 🌧️ = ' +response.body.currently.precipProbability+' % '
+                "Summary": response.body.daily.data[0].icon,
+                "temperature":' 🌡️ =  '+response.body.currently.temperature+' degree fahrenheit.',
+                "rain":  ' 🌧️ = ' +response.body.currently.precipProbability+' % '
             })
         }
     })

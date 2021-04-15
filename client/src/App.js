@@ -48,6 +48,8 @@ const App = () => {
   const [togglePopup] = React.useState(false);
   const [addEntryLocation, setAddEntryLocation] = useState(null);
   const [weatherDetail, setWeatherDetail] = useState("Fetching...");
+  const [TempDetail, setTempDetail] = useState("Fetching...");
+  const [RainDetail, setRainDetail] = useState("Fetching...");
   const [showPopup, setShowPopup] = useState({});
   const [selectedTags, setSelectedTags] = useState("Home");
   const darkMode = useDarkMode(false);
@@ -113,7 +115,9 @@ const App = () => {
       }
     }).then(res => res.json())
       .then(data => {
-        setWeatherDetail(data.details)
+        setWeatherDetail(data.Summary)
+        setTempDetail(data.temperature)
+        setRainDetail(data.rain)
       })
       .catch(() => setWeatherDetail("Error Fetching Weather Info"))
   }
@@ -208,6 +212,10 @@ const App = () => {
                     <p>{entry.tags}</p>
                     <div className="weather">
                       {weatherDetail}
+                      <br>
+                      {TempDetail}
+                      </br>
+                      {RainDetail}
                     </div>
 
 
