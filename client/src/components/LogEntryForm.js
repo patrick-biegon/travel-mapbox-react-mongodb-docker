@@ -8,6 +8,7 @@ const buttonStyle = {
     backgroundColor: "white",
     color: "black",
     outline: "black",
+    height: "2rem",
     padding: "10px 10px 10px 10px",
     border: "0.5px solid black",
     cursor: "pointer",
