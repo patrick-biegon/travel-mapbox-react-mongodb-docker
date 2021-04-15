@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { createLogEntry } from '../api';
 import '../index.css'
+import './LogEntryForm.css'
 
 const buttonStyle = {
-    backgroundColor: "#4CAF50",
-    color: "white",
-    padding: "14px 20px 10px 10px",
-    margin: "8px 0",
-    border: "none",
+    backgroundColor: "white",
+    color: "black",
+    outline: "black",
+    padding: "10px 10px 10px 10px",
+    border: "0.5px solid black",
     cursor: "pointer",
     width: "100%",
+    margin: "1rem 0 1rem 0",
   }
 
 const LogEntryForm = ({ location, onClose }) => {
@@ -39,23 +41,23 @@ const LogEntryForm = ({ location, onClose }) => {
 
             { error ? <h3 className="error"> {error} </h3> : null}
 
-            <label htmlFor="title">Title</label>
-            <input name="title" ref={register} required />
+            <label htmlFor="title"></label>
+            <input name="title" placeholder="Enter Title" ref={register} required />
 
-            <label htmlFor="comments">Comments</label>
-            <textarea name="comments" rows={3} ref={register} />
+            <label htmlFor="comments"></label>
+            <textarea name="comments" placeholder="Enter Comments" rows={3} ref={register} />
 
-            <label htmlFor="description">Description</label>
-            <textarea name="description" rows={3} ref={register} />
+            <label htmlFor="description"></label>
+            <textarea name="description" placeholder="Enter Description" rows={3} ref={register} />
 
-            <label htmlFor="image">Image</label>
-            <input name="image" ref={register} />
+            <label htmlFor="image"></label>
+            <input name="image" placeholder="Enter Image URL" ref={register} />
 
-            <label htmlFor="visitDate">Visit Date</label>
-            <input name="visitDate" type="date" ref={register} required />
+            <label htmlFor="visitDate"></label>
+            <input className="dateForm" name="visitDate" type="date" placeholder="Select Date" ref={register} required />
 
-            <label htmlFor="tags">Commute Type:</label>
-            <select style={{backgroundColor: "#4CAF50"}} className="commute" name="tags" ref={register} >
+            <label htmlFor="tags"></label>
+            <select className="commute" placeholder="Select Location Tag" name="tags" ref={register} >
                 <option value="Home">Home</option>
                 <option value="Work">Work</option>
                 <option value="College">College</option>
@@ -64,8 +66,6 @@ const LogEntryForm = ({ location, onClose }) => {
                 <option value="Monument">Monument</option>
                 <option value="Miscellaneous">Miscellaneous</option>
             </select>
-
-            <br></br>
 
             <button style={buttonStyle} disabled={loading}>{loading ? 'Loading...' : 'Create Entry'}</button>
 

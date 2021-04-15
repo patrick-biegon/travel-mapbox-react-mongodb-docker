@@ -1,0 +1,47 @@
+.entry-form .commute{
+    height: 2rem;
+    border-radius: 6px;
+    border: 0.5px solid black;
+    transition: 750ms;
+    text-align-last: center;
+    background-color: white;
+    padding-left: 1rem;
+}
+
+.entry-form{
+    padding: 0.1rem 0.1rem 0.01rem 0.1rem;
+}
+
+.entry-form textarea{
+    padding-top: 1rem;
+    border-radius: 8px;
+    border: 0.5px solid black;
+    height: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.entry-form input{
+    border-radius: 8px;
+    border: 0.5px solid black;
+    height: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.entry-form .dateForm{
+    border-radius: 6px;
+    text-align-last: center;
+    border: 0.5px solid black;
+    height: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+}
+
+.dateForm::placeholder{
+    text-align: center;
+    padding-left: 1rem;
+    
+}
+
