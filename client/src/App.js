@@ -32,6 +32,8 @@ const getTheme = (mode) => {
   }
 }
 
+
+
 const log = (theme) => {
   console.log(theme);
 }
@@ -52,6 +54,7 @@ const App = () => {
   const [RainDetail, setRainDetail] = useState("Fetching...");
   const [showPopup, setShowPopup] = useState({});
   const [selectedTags, setSelectedTags] = useState("Home");
+  const [button, setButton] = useState(false);
   const darkMode = useDarkMode(false);
   const theme = getTheme(darkMode.value ? dark : light);
 
@@ -205,25 +208,26 @@ const App = () => {
                   <div className="popup">
                     <h3>{entry.title}</h3>
                     <p>{entry.tags}</p>
-                    
+
                     <small>{new Date(entry.visitDate).toLocaleDateString()}</small>
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
 
                     {entry.image && <img src={entry.image} alt={entry.title} />}
 
-                    <br/>
-                    
+                    <br />
+
                     <p>{entry.description}</p>
                     <p>{entry.comments}</p>
 
-                    <br/>
-                    
+                    <br />
+
                     <div className="weather">
                       {weatherDetail}
-                      <br>
+                      <br />
+                      <br />
                       {TempDetail}
-                      </br>
+                      <br />
                       {RainDetail}
                     </div>
 
@@ -344,9 +348,17 @@ const App = () => {
                     <input
                       type="button"
                       name="entries"
+                      disabled={button}
                       className="inputButton"
                       id={`entry-${filterdEntry._id}`}
-                      onClick={() => onSelectEntries(filterdEntry)}
+                      onClick={() => {
+                        onSelectEntries(filterdEntry)
+                        setShowPopup({
+                          //...showPopup,
+                          [filterdEntry._id]: true,
+                        })
+                        updateWeatherDetails(filterdEntry.latitude, filterdEntry.longitude)
+                      }}
                       value={filterdEntry.title}
                     />
                   </div>
