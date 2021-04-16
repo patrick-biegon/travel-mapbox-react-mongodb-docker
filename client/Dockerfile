@@ -6,6 +6,8 @@ WORKDIR /usr/src/app
 
 #Install mocha for tests
 
+RUN npm config set unsafe-perm true
+
 RUN npm install -g mocha
 
 COPY package*.json ./
