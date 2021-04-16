@@ -10,7 +10,7 @@ const screen = {
   height: 480
 };
 
-const serverUri = "http://localhost:3000";
+const serverUri = "http://localhost:4444";
 const appTitle = "React App";
 
 var browser = new Builder()
