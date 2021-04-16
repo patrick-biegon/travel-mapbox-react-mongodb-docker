@@ -10,8 +10,6 @@ RUN apk add xvfb
 
 RUN apk add chromium
 
-RUN apk add openjdk11
-
 RUN rm -fr /root/tmp
 
 # Working directory be app
