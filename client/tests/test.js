@@ -6,7 +6,6 @@ var webdriver = require("selenium-webdriver");
 const serverUri = "http://localhost:3000";
 const appTitle = "React App";
 
-
 var browser = new webdriver.Builder()
     .usingServer()
     .withCapabilities({ browserName: "chrome" })
