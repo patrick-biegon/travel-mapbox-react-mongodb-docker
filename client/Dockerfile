@@ -1,7 +1,7 @@
 # Build react client
 FROM node:latest
 
-# Latest Googgle chromium installation package
+# Latest Google chrome installation package
 RUN apt-get update && apt-get install -y wget
 
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -38,7 +38,7 @@ COPY package*.json ./
 
 # Installing dependencies
 
-RUN npm install
+RUN npm install -f
 
 # copy local files to app folder
 COPY . .
