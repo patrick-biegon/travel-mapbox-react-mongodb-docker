@@ -194,11 +194,13 @@ const App = () => {
 
               showPopup[entry._id] ? (
                 <Popup
+                  offsetTop={-130}
                   latitude={entry.latitude}
                   longitude={entry.longitude}
                   closeButton={true}
+                  tipSize={0}
                   closeOnClick={false}
-                  dynamicPosition={true}
+                  dynamicPosition={false}
                   onClose={() => {
                     setShowPopup({})
                     setWeatherDetail("Fetching...")
@@ -281,7 +283,9 @@ const App = () => {
               longitude={addEntryLocation.longitude}
               closeButton={true}
               closeOnClick={false}
-              dynamicPosition={true}
+              offsetTop={-130}
+              tipSize={0}
+              dynamicPosition={false}
               onClose={() => setAddEntryLocation(null)}
               anchor="top" >
               <div className="popup">
@@ -326,6 +330,7 @@ const App = () => {
               }}
               id={`entry-${logEntries._id}`}
             >
+              
               <option value="Home">Home</option>
               <option value="Work">Work</option>
               <option value="College">College</option>
@@ -369,9 +374,6 @@ const App = () => {
         </div>
 
       }
-      {/* <Panel */}
-      {/* onSelectEntries={onSelectEntries} */}
-      {/* /> */}
 
       <div className="themeToggle">
         <DarkModeToggle
