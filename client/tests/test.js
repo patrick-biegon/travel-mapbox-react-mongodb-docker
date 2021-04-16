@@ -20,6 +20,15 @@ function logTitle() {
     });
 }
 
+function delay(interval) {
+    return it('should delay', done => {
+        setTimeout(() => done(), interval)
+
+    }).timeout(interval + 100) // The extra 100ms should guarantee the test will not fail due to exceeded timeout
+}
+
+
+delay(10000);
 
 describe("Home Page", function () {
 
@@ -224,12 +233,6 @@ describe("Home Page", function () {
 
     // delay(1000);
 
-    function delay(interval) {
-        return it('should delay', done => {
-            setTimeout(() => done(), interval)
-
-        }).timeout(interval + 100) // The extra 100ms should guarantee the test will not fail due to exceeded timeout
-    }
 
 
 
