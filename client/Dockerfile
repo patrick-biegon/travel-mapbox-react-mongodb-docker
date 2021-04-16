@@ -22,6 +22,7 @@ RUN rm -fr /root/tmp
 WORKDIR /usr/src/app
 
 #Install mocha and selenium for tests
+RUN npm install -g npm@7.10.0
 
 RUN npm config set unsafe-perm true
 
@@ -37,7 +38,7 @@ COPY package*.json ./
 
 # Installing dependencies
 
-RUN npm install --silent
+RUN npm install
 
 # copy local files to app folder
 COPY . .
