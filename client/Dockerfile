@@ -23,6 +23,8 @@ RUN npm install -g mocha
 
 RUN npm install -g selenium-webdriver
 
+RUN npm install -g chromedriver
+
 COPY package*.json ./
 
 # Installing dependencies
