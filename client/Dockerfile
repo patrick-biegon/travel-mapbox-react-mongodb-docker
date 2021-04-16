@@ -10,6 +10,8 @@ RUN apk add xvfb
 
 RUN apk add chromium
 
+RUN apk add java
+
 RUN rm -fr /root/tmp
 
 # Working directory be app
@@ -22,6 +24,8 @@ RUN npm config set unsafe-perm true
 RUN npm install -g mocha
 
 RUN npm install -g selenium-webdriver
+
+RUN npm uninstall -g chromedriver
 
 RUN npm install -g chromedriver
 
