@@ -16,7 +16,7 @@ const appTitle = "React App";
 var browser = new Builder()
     .usingServer()
     .withCapabilities({ browserName: "chrome" })
-    .setChromeOptions(new webdriver.Options().headless().windowSize(screen))
+    .setChromeOptions(new webdriver.Options().headless().addArguments("--disable-dev-shm-usage", "--no-sandbox").windowSize(screen))
     .build();
 
 function logTitle() {
