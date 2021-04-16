@@ -10,7 +10,7 @@ RUN apk add xvfb
 
 RUN apk add chromium
 
-RUN apk add java
+RUN apk add openjdk11
 
 RUN rm -fr /root/tmp
 
