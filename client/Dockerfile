@@ -1,8 +1,8 @@
 # Build react client
 FROM node:10.16-alpine
 
-# Latest Googgle Chrome installation package
-RUN apk update && apk install -y wget
+# Latest Googgle chromium installation package
+RUN apk update && apk add wget --no-cache
 
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
 
@@ -10,11 +10,9 @@ RUN sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc
 
 RUN apk update
 
-RUN apk install -y xvfb
+RUN apk add xvfb
 
-RUN apk install -y google-chrome-stable
-
-RUN apk clean
+RUN apk add chromium
 
 RUN rm -fr /root/tmp
 
