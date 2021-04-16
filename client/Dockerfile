@@ -9,6 +9,8 @@ COPY package*.json ./
 # Installing dependencies
 RUN npm install --silent
 
+RUN npm install -f mocha
+
 # copy local files to app folder
 COPY . .
 
