@@ -1,14 +1,22 @@
 
 var assert = require("assert").strict;
-var webdriver = require("selenium-webdriver");
+var webdriver = require("selenium-webdriver/chrome");
 //require("geckodriver");
+
+const {Builder, By, Key, until} = require('selenium-webdriver');
+
+const screen = {
+  width: 640,
+  height: 480
+};
 
 const serverUri = "http://localhost:3000";
 const appTitle = "React App";
 
-var browser = new webdriver.Builder()
+var browser = new Builder()
     .usingServer()
     .withCapabilities({ browserName: "chrome" })
+    .setChromeOptions(new webdriver.Options().headless().windowSize(screen))
     .build();
 
 function logTitle() {
