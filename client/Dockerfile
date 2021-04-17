@@ -1,5 +1,5 @@
 # Build react client
-FROM node:latest
+FROM node:6.9
 
 # Latest Google chrome installation package
 
@@ -35,7 +35,7 @@ COPY package*.json ./
 
 # Installing dependencies
 
-RUN npm install -f
+RUN npm install --no-optional
 
 # copy local files to app folder
 COPY . .
