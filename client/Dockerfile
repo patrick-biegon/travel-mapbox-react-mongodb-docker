@@ -3,9 +3,9 @@ FROM node:latest
 
 # Latest Google chrome installation package
 
-RUN sudo apt-get update 
+RUN apt-get update 
 
-RUN sudo apt-get install google-chrome-stable
+RUN apt-get install google-chrome-stable
 
 RUN apt-get clean
 
