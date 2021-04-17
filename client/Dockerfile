@@ -34,11 +34,9 @@ COPY package*.json ./
 
 # Installing dependencies
 
-RUN npm install --silent --no-optional
+RUN npm install --no-optional
 
 # copy local files to app folder
 COPY . .
 
 EXPOSE 3000
-
-SHELL ["npm","run","start"]
