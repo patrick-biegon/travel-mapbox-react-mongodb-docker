@@ -26,11 +26,13 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
+    "start-server": "react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "s-test": "react-scripts test",
     "eject": "react-scripts eject",
-    "s-test": "mocha --timeout 10000 tests/test"
+    "test": "mocha --timeout 10000 tests/test",
+    "ci": "start-server-and-test start-server http://localhost:3000 test"
   },
   "eslintConfig": {
     "extends": [
@@ -52,5 +54,8 @@
   },
   "optionalDependencies": {
     "fsevents": "^2.3.2"
+  },
+  "devDependencies": {
+    "start-server-and-test": "^1.12.1"
   }
 }
