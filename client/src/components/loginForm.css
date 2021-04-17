@@ -12,8 +12,8 @@ body{
     box-shadow: 0 0 5px 2px rgb(164, 150, 150);
     border-radius: 2rem;
     position: absolute;
-    width: 50vw;
-    height: 36vh;
+    width: 30vw;
+    height: 45vh;
     top: 0;
     bottom: 0;
     left: 0;
@@ -29,8 +29,8 @@ body{
     box-shadow: 0 0 5px 2px rgb(164, 150, 150);
     border-radius: 2rem;
     position: absolute;
-    width: 50vw;
-    height: 45vh;
+    width: 30vw;
+    height: 53vh;
     top: 0;
     bottom: 0;
     left: 0;
@@ -48,8 +48,7 @@ body{
     padding: 10px 20px 10px 20px;
     font-size: 20px;
     text-align: center;
-    border-top-left-radius: 7px;
-    border-bottom-left-radius: 7px;
+    border-radius: 7px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
@@ -62,8 +61,7 @@ body{
     color: white;
     font-size: 20px;
     padding: 10px 20px 10px 20px;
-    border-top-right-radius: 7px;
-    border-bottom-right-radius: 7px;
+    border-radius: 7px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
@@ -74,7 +72,7 @@ body{
 @media only screen and (max-width: 500px) {
     .LogInForm {
         width: 70vw;
-        height: 30vh;
+        height: 40vh;
     }
 
     .Button1Style{
@@ -83,7 +81,7 @@ body{
     }
     .RegisterForm {
         width: 70vw;
-        height: 40vh;
+        height: 50vh;
     }
   }
 
