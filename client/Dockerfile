@@ -34,7 +34,7 @@ COPY package*.json ./
 
 # Installing dependencies
 
-RUN npm install --no-optional
+RUN npm install --silent --no-optional
 
 # copy local files to app folder
 COPY . .
