@@ -1,5 +1,5 @@
 # Build react client
-FROM node:6.9
+FROM node:latest
 
 # Latest Google chrome installation package
 
