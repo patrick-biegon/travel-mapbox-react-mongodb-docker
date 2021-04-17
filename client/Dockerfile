@@ -21,6 +21,7 @@ RUN rm -fr /root/tmp
 WORKDIR /usr/src/app
 
 #Install mocha and selenium for tests
+RUN npm install -g npm@7.10.0
 
 RUN npm config set unsafe-perm true
 
