@@ -19,12 +19,12 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start-server": "DISABLE_ESLINT_PLUGIN=true node --max_old_space_size=512 node_modules/.bin/react-scripts start",
-    "start": "DISABLE_ESLINT_PLUGIN=true node --max_old_space_size=512 node_modules/.bin/react-scripts start",
+    "start-server": "react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "s-test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test": "DISABLE_ESLINT_PLUGIN=true mocha --timeout 10000 tests/test",
+    "test": "mocha --timeout 10000 tests/test",
     "ci": "start-server-and-test start-server http://localhost:3000 test"
   },
   "eslintConfig": {
