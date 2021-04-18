@@ -1,5 +1,10 @@
 const API_URL = process.env.REACT_APP_API_URL;
 
+// export async function metrics(){
+//     const response = await fetch(`${API_URL}/`);
+//     return response.json();
+// }
+
 export async function listLogEntries(){
     const token = localStorage.getItem("token")
     const response = await fetch(`${API_URL}/api/logs`, {

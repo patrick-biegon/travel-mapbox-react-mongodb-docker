@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { login } from "../api"
+import { login, metrics } from "../api"
 import { useStateValue } from '../StateProvider';
 import './loginForm.css'
 const { Redirect } = require("react-router-dom");
@@ -56,6 +56,7 @@ const RegisterStyle = {
 
 const Login = () => {
   var redirect = false;
+  // metrics();
   const [email, updateEmail] = useState("");
   const [password, updatePassword] = useState("");
   const [state, updateState] = useState({

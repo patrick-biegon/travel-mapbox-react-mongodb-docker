@@ -6,7 +6,7 @@ stages:
   - "client-build" 
   - "print-files"
   - "test"
-  
+
 steps:
   clone:
     title: "Cloning repository"
@@ -15,10 +15,10 @@ steps:
     revision: "${{CF_BRANCH}}"
     git: "github"
     stage: "clone"
-    
+
   print_pwd_files:
     title: 'Listing files'
-    image: alpine:latest
+    image: 'alpine:latest'
     commands:
       - 'ls -l'
     stage: "print-files"
@@ -31,7 +31,7 @@ steps:
     tag: "master"
     dockerfile: "Dockerfile"
     stage: "server-build"
-    
+
   client_build:
     title: "Building Client Docker image"
     type: "build"
@@ -40,7 +40,7 @@ steps:
     tag: "client"
     dockerfile: "Dockerfile"
     stage: "client-build"
-      
+
   Testing:
     title: "Testing React"
     stage: "test"
@@ -49,7 +49,7 @@ steps:
           version: '2'
           services:
             selenium:
-              image: "selenium/standalone-chrome:2.46.0"
+              image: "selenium/standalone-chrome:latest"
               ports:
                 - "4444"
     composition_candidates:
@@ -57,7 +57,9 @@ steps:
             image: '${{client_build}}'
             volumes:
               - "/dev/shm"
-            command: 'npm run s-test'
+            environment:
+              CI: '${{CI}}'
+            command: 'npm run ci'
     on_success:
           metadata:
             set:
