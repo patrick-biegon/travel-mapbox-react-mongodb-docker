@@ -8,8 +8,6 @@ WORKDIR /usr/src/app
 
 # Install Dependencies
 
-RUN cd server
-
 COPY package*.json ./
 
 RUN npm install --silent
