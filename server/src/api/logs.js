@@ -7,7 +7,9 @@ const router = Router();
 
 router.get('/', auth, async (req, res) =>{
     try{
-        const entries = await LogEntry.find({ userid: req.user._id });
+        let entries;
+        if(req.query.type == "public") entries = await LogEntry.find({ isPublic: true })
+        else entries = await LogEntry.find({ userid: req.user._id });
         res.json(entries);
     } catch(error){
         res.sendStatus(501).json({error: error.message})
@@ -26,6 +28,8 @@ router.post('/getlocation', auth, async (req, res, next) => {
 router.post('/', auth, async (req, res, next) =>{
     try{
         req.body.userid = req.user._id;
+        if(req.body.type == "public") req.body.isPublic = true;
+        else req.body.isPublic = false;
         const logEntry = new LogEntry(req.body);
         const createdEntry = await logEntry.save();
         res.json(createdEntry);

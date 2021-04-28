@@ -45,7 +45,6 @@ const themeTime = () => {
 const App = () => {
 
   const [logEntries, setLogEntries] = useState([]);
-  const [togglePopup] = React.useState(false);
   const [addEntryLocation, setAddEntryLocation] = useState(null);
   const [weatherDetail, setWeatherDetail] = useState("Fetching...");
   const [TempDetail, setTempDetail] = useState("Fetching...");
@@ -54,6 +53,7 @@ const App = () => {
   const [selectedTags, setSelectedTags] = useState("Home");
   const darkMode = useDarkMode(false);
   const theme = getTheme(darkMode.value ? dark : light);
+  const [reqType, setReqType] = useState("private")
 
 
   const [settings, setSettings] = useState({
@@ -83,7 +83,7 @@ const App = () => {
 
 
   const getEntries = async () => {
-    const logEntries = await listLogEntries();
+    const logEntries = await listLogEntries(reqType);
     //  console.log(logEntries);
     setLogEntries(logEntries);
   };
@@ -221,9 +221,9 @@ const App = () => {
                     
                     <div className="weather">
                       {weatherDetail}
-                      <br>
+                      <br/>
                       {TempDetail}
-                      </br>
+                      <br/>
                       {RainDetail}
                     </div>
 
@@ -373,6 +373,13 @@ const App = () => {
 
       <div className="NavbarApp">
         <Navbar />
+        <select className="commute" placeholder="Select Type" name="type" onChange={(e) => {
+          setReqType(e.target.value)
+          getEntries();
+        }}>
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+            </select>
       </div>
 
 
