@@ -1,0 +1,72 @@
+version: "1.0"
+
+stages:
+  - "clone"
+  - "server-build"
+  - "client-build" 
+  - "print-files"
+  - "test"
+
+steps:
+  clone:
+    title: "Cloning repository"
+    type: "git-clone"
+    repo: "asgaralipq/travel-app"
+    revision: "${{CF_BRANCH}}"
+    git: "github"
+    stage: "clone"
+
+  print_pwd_files:
+    title: 'Listing files'
+    image: 'alpine:latest'
+    commands:
+      - 'ls -l'
+    stage: "print-files"
+
+  server_build:
+    title: "Building Server Docker image"
+    type: "build"
+    image_name: "asgaralipq/travel-app"
+    working_directory: "./travel-app/server/"
+    tag: "master"
+    dockerfile: "Dockerfile"
+    stage: "server-build"
+
+  client_build:
+    title: "Building Client Docker image"
+    type: "build"
+    image_name: "asgaralipq/travel-app"
+    working_directory: "./travel-app/client/"
+    tag: "client"
+    dockerfile: "Dockerfile"
+    stage: "client-build"
+
+  Testing:
+    title: "Testing React"
+    stage: "test"
+    type: "composition"
+    composition:
+          version: '2'
+          services:
+            selenium:
+              image: "selenium/standalone-chrome:latest"
+              ports:
+                - "4444"
+    composition_candidates:
+          test:
+            image: '${{client_build}}'
+            volumes:
+              - "/dev/shm"
+            environment:
+              CI: '${{CI}}'
+            command: 'npm run ci'
+    on_success:
+          metadata:
+            set:
+              - ${{client_build.imageId}}:
+                - CF_QUALITY: true
+    on_fail:
+          metadata:
+            set:
+              - ${{client_build.imageId}}:
+                - CF_QUALITY: false

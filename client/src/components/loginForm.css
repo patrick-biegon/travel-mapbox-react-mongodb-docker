@@ -1,0 +1,87 @@
+body{
+    background: url(.././images/DarkBack2.png) ;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+.LogInForm{
+    background-color: beige;
+    padding: 2rem;
+    -webkit-box-shadow: 0 0 5px 2px #fff;
+    -moz-box-shadow: 0 0 5px 2px #fff;
+    box-shadow: 0 0 5px 2px rgb(164, 150, 150);
+    border-radius: 2rem;
+    position: absolute;
+    width: 30vw;
+    height: 45vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.RegisterForm{
+    background-color: beige;
+    padding: 2rem;
+    -webkit-box-shadow: 0 0 5px 2px #fff;
+    -moz-box-shadow: 0 0 5px 2px #fff;
+    box-shadow: 0 0 5px 2px rgb(164, 150, 150);
+    border-radius: 2rem;
+    position: absolute;
+    width: 30vw;
+    height: 53vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.ButtonFlex{
+    flex: 100%;
+}
+
+.Button1Style{
+    background-color: orangered;
+    color: black;
+    padding: 10px 20px 10px 20px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 7px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    flex: 50%;
+}
+
+.Button2Style{
+    background-color: #808080;
+    color: white;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 7px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    flex: 50%;
+}
+
+@media only screen and (max-width: 500px) {
+    .LogInForm {
+        width: 70vw;
+        height: 40vh;
+    }
+
+    .Button1Style{
+        font-size: 20px;
+
+    }
+    .RegisterForm {
+        width: 70vw;
+        height: 50vh;
+    }
+  }
+

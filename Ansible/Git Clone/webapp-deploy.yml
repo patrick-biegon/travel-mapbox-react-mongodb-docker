@@ -1,0 +1,9 @@
+- hosts: local
+  connection: local
+  become: true
+  tasks: 
+    - name: Copy files to host
+      git:
+        repo: https://github.com/asgaralipq/travel-app.git
+        dest: /var/www/html
+        force: yes 

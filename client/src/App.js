@@ -32,6 +32,8 @@ const getTheme = (mode) => {
   }
 }
 
+
+
 const log = (theme) => {
   console.log(theme);
 }
@@ -51,6 +53,7 @@ const App = () => {
   const [RainDetail, setRainDetail] = useState("Fetching...");
   const [showPopup, setShowPopup] = useState({});
   const [selectedTags, setSelectedTags] = useState("Home");
+  const [button, setButton] = useState(false);
   const darkMode = useDarkMode(false);
   const theme = getTheme(darkMode.value ? dark : light);
   const [reqType, setReqType] = useState("private")
@@ -191,11 +194,13 @@ const App = () => {
 
               showPopup[entry._id] ? (
                 <Popup
+                  offsetTop={-130}
                   latitude={entry.latitude}
                   longitude={entry.longitude}
                   closeButton={true}
+                  tipSize={0}
                   closeOnClick={false}
-                  dynamicPosition={true}
+                  dynamicPosition={false}
                   onClose={() => {
                     setShowPopup({})
                     setWeatherDetail("Fetching...")
@@ -205,20 +210,20 @@ const App = () => {
                   <div className="popup">
                     <h3>{entry.title}</h3>
                     <p>{entry.tags}</p>
-                    
+
                     <small>{new Date(entry.visitDate).toLocaleDateString()}</small>
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
 
                     {entry.image && <img src={entry.image} alt={entry.title} />}
 
-                    <br/>
-                    
+                    <br />
+
                     <p>{entry.description}</p>
                     <p>{entry.comments}</p>
 
-                    <br/>
-                    
+                    <br />
+
                     <div className="weather">
                       {weatherDetail}
                       <br/>
@@ -277,7 +282,9 @@ const App = () => {
               longitude={addEntryLocation.longitude}
               closeButton={true}
               closeOnClick={false}
-              dynamicPosition={true}
+              offsetTop={-130}
+              tipSize={0}
+              dynamicPosition={false}
               onClose={() => setAddEntryLocation(null)}
               anchor="top" >
               <div className="popup">
@@ -322,6 +329,7 @@ const App = () => {
               }}
               id={`entry-${logEntries._id}`}
             >
+              
               <option value="Home">Home</option>
               <option value="Work">Work</option>
               <option value="College">College</option>
@@ -344,9 +352,17 @@ const App = () => {
                     <input
                       type="button"
                       name="entries"
+                      disabled={button}
                       className="inputButton"
                       id={`entry-${filterdEntry._id}`}
-                      onClick={() => onSelectEntries(filterdEntry)}
+                      onClick={() => {
+                        onSelectEntries(filterdEntry)
+                        setShowPopup({
+                          //...showPopup,
+                          [filterdEntry._id]: true,
+                        })
+                        updateWeatherDetails(filterdEntry.latitude, filterdEntry.longitude)
+                      }}
                       value={filterdEntry.title}
                     />
                   </div>
@@ -357,9 +373,6 @@ const App = () => {
         </div>
 
       }
-      {/* <Panel */}
-      {/* onSelectEntries={onSelectEntries} */}
-      {/* /> */}
 
       <div className="themeToggle">
         <DarkModeToggle
