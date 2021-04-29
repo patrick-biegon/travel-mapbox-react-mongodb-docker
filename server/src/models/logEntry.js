@@ -45,6 +45,11 @@ const logEntrySchema = new Schema({
         enum: ['Food', 'Monument', 'Hospital', 'Home', 'College', 'Work', 'Miscellaneous'],
         default: 'Home'
     },
+    isPublic: {
+        required: true,
+        type: Boolean,
+        default: false
+    }
 
 },{
     timestamps: true,

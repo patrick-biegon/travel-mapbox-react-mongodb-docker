@@ -68,6 +68,12 @@ const LogEntryForm = ({ location, onClose }) => {
                 <option value="Miscellaneous">Miscellaneous</option>
             </select>
 
+            <label htmlFor="type"></label>
+            <select className="commute" placeholder="Select Type" name="type" ref={register} >
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+            </select>
+
             <button style={buttonStyle} disabled={loading}>{loading ? 'Loading...' : 'Create Entry'}</button>
 
         </form>
