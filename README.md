@@ -24,3 +24,17 @@ Some Screenshots:
 <p align="center"><img src="https://imgur.com/PkvSIHp.gif" width="70%"></p>
 
 <p align="center"><img src="https://imgur.com/EluMKMi.png" width="20%"></p>
+
+Steps to configure Pipeline:
+
+1. Sign up at https://g.codefresh.io/
+2. Configure your Git and Registry by going into ```/account-admin/account-conf/integration```
+3. Create a new Project and add a new pipeline.
+4. Use the codefresh.yml in the root of the repository.
+5. Replace the repository name and registery name respectively.
+6. Once configuration is done, run the piepline.
+7. If everything goes right, all the stages would complete successfully and you'll get a successful output.
+
+<p align="center"><img src="https://imgur.com/qsYgU3C.png" width="70%"></p>
+
+Note: docker-compose.yml is also included if you want to setup a local docker environment. Just build both the docker images using docker build and run the docker-compose command.
