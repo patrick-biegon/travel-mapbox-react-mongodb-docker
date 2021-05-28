@@ -2,7 +2,7 @@
 
 Dockerized Travel Mapping Application using ReactMapGL, Mapbox, NodeJS and MongoDB
 
-Steps to run the application
+## Steps to run the application
 
 1. Configure .env files according to your system setup in ```/client/.env.example``` and ```/server/.env.example```
 2. Rename both the files back to .env
@@ -12,12 +12,12 @@ Steps to run the application
 6. Navigate to the ```/client``` directory and install the dependencies using ```npm i -f``` (-f because package.json has been messed up because of fsevents for some reason)
 7. Start the client using ```npm run start```
 
-Stuff to resolve:
+## Stuff to resolve:
 
 1. Disable panel button once button is clicked and location is reached.
 2. Minor authentication fixes.
 
-Some Screenshots:
+## Some Screenshots:
 
 <p align="center"><img src="https://imgur.com/b7MpTAc.gif" width="70%"></p>
 
@@ -25,7 +25,7 @@ Some Screenshots:
 
 <p align="center"><img src="https://imgur.com/EluMKMi.png" width="20%"></p>
 
-Steps to configure Pipeline:
+## Steps to configure Pipeline:
 
 1. Sign up at https://g.codefresh.io/
 2. Configure your Git and Registry by going into ```/account-admin/account-conf/integration```
@@ -37,4 +37,4 @@ Steps to configure Pipeline:
 
 <p align="center"><img src="https://imgur.com/qsYgU3C.png" width="70%"></p>
 
-Note: docker-compose.yml is also included if you want to setup a local docker environment. Just build both the docker images using docker build and run the docker-compose command.
+## Note: docker-compose.yml is also included if you want to setup a local docker environment. Just build both the docker images using docker build and run the docker-compose command.
