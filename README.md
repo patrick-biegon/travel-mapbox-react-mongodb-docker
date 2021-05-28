@@ -37,4 +37,6 @@ Dockerized Travel Mapping Application using ReactMapGL, Mapbox, NodeJS and Mongo
 
 <p align="center"><img src="https://imgur.com/qsYgU3C.png" width="70%"></p>
 
-## Note: docker-compose.yml is also included if you want to setup a local docker environment. Just build both the docker images using docker build and run the docker-compose command.
+## Note: 
+
+docker-compose.yml is also included if you want to setup a local docker environment. Just build both the docker images using docker build and run the docker-compose command.
