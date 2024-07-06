@@ -11,7 +11,7 @@ steps:
   clone:
     title: "Cloning repository"
     type: "git-clone"
-    repo: "asgaralipq/travel-app"
+    repo: "patrick-biegon/travel-app"
     revision: "${{CF_BRANCH}}"
     git: "github"
     stage: "clone"
@@ -26,7 +26,7 @@ steps:
   server_build:
     title: "Building Server Docker image"
     type: "build"
-    image_name: "asgaralipq/travel-app"
+    image_name: "patrick-biegon/travel-app"
     working_directory: "./travel-app/server/"
     tag: "master"
     dockerfile: "Dockerfile"
@@ -35,7 +35,7 @@ steps:
   client_build:
     title: "Building Client Docker image"
     type: "build"
-    image_name: "asgaralipq/travel-app"
+    image_name: "patrick-biegon/travel-app"
     working_directory: "./travel-app/client/"
     tag: "client"
     dockerfile: "Dockerfile"

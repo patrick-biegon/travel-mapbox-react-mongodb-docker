@@ -4,6 +4,6 @@
   tasks: 
     - name: Copy files to host
       git:
-        repo: https://github.com/asgaralipq/travel-app.git
+        repo: https://github.com/patrick-biegon/travel-app.git
         dest: /var/www/html
         force: yes 
